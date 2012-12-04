@@ -8,63 +8,73 @@ class CanonTest(unittest.TestCase):
         self.assertEqual(canon(''), '')
 
     def test_canon_converts_sequence_of_i(self):
-        self.assertEqual(canon('i'), 'i')
-        self.assertEqual(canon('ii'), 'ii')
-        self.assertEqual(canon('iii'), 'iii')
-        self.assertEqual(canon('iiii'), 'iv')
+        self.assertEqual(canon('i'), 'I')
+        self.assertEqual(canon('ii'), 'II')
+        self.assertEqual(canon('iii'), 'III')
+        self.assertEqual(canon('iiii'), 'IV')
 
     def test_canon_converts_v_followed_by_sequence_of_i(self):
-        self.assertEqual(canon('iv'), 'iv')
-        self.assertEqual(canon('v'), 'v')
-        self.assertEqual(canon('vi'), 'vi')
-        self.assertEqual(canon('vii'), 'vii')
-        self.assertEqual(canon('viii'), 'viii')
-        self.assertEqual(canon('viiii'), 'ix')
+        self.assertEqual(canon('iv'), 'IV')
+        self.assertEqual(canon('v'), 'V')
+        self.assertEqual(canon('vi'), 'VI')
+        self.assertEqual(canon('vii'), 'VII')
+        self.assertEqual(canon('viii'), 'VIII')
+        self.assertEqual(canon('viiii'), 'IX')
 
     def test_canon_teens(self):
-        self.assertEqual(canon('ix'), 'ix')
-        self.assertEqual(canon('x'), 'x')
-        self.assertEqual(canon('xi'), 'xi')
-        self.assertEqual(canon('xii'), 'xii')
-        self.assertEqual(canon('xiii'), 'xiii')
-        self.assertEqual(canon('xiiii'), 'xiv')
+        self.assertEqual(canon('ix'), 'IX')
+        self.assertEqual(canon('x'), 'X')
+        self.assertEqual(canon('xi'), 'XI')
+        self.assertEqual(canon('xii'), 'XII')
+        self.assertEqual(canon('xiii'), 'XIII')
+        self.assertEqual(canon('xiiii'), 'XIV')
 
-        self.assertEqual(canon('xv'), 'xv')
-        self.assertEqual(canon('xvi'), 'xvi')
-        self.assertEqual(canon('xvii'), 'xvii')
-        self.assertEqual(canon('xviii'), 'xviii')
-        self.assertEqual(canon('xviii'), 'xviii')
-        self.assertEqual(canon('xviiii'), 'xix')
+        self.assertEqual(canon('xv'), 'XV')
+        self.assertEqual(canon('xvi'), 'XVI')
+        self.assertEqual(canon('xvii'), 'XVII')
+        self.assertEqual(canon('xviii'), 'XVIII')
+        self.assertEqual(canon('xviii'), 'XVIII')
+        self.assertEqual(canon('xviiii'), 'XIX')
 
     def test_canon_tens(self):
-        self.assertEqual(canon('xx'), 'xx')
-        self.assertEqual(canon('xxi'), 'xxi')
-        self.assertEqual(canon('xxii'), 'xxii')
-        self.assertEqual(canon('xxiii'), 'xxiii')
-        self.assertEqual(canon('xxiiii'), 'xxiv')
+        self.assertEqual(canon('xx'), 'XX')
+        self.assertEqual(canon('xxi'), 'XXI')
+        self.assertEqual(canon('xxii'), 'XXII')
+        self.assertEqual(canon('xxiii'), 'XXIII')
+        self.assertEqual(canon('xxiiii'), 'XXIV')
 
-        self.assertEqual(canon('xxiiii'), 'xxiv')
-        self.assertEqual(canon('xxv'), 'xxv')
-        self.assertEqual(canon('xxvi'), 'xxvi')
-        self.assertEqual(canon('xxvii'), 'xxvii')
-        self.assertEqual(canon('xxviii'), 'xxviii')
-        self.assertEqual(canon('xxviiii'), 'xxix')
+        self.assertEqual(canon('xxiiii'), 'XXIV')
+        self.assertEqual(canon('xxv'), 'XXV')
+        self.assertEqual(canon('xxvi'), 'XXVI')
+        self.assertEqual(canon('xxvii'), 'XXVII')
+        self.assertEqual(canon('xxviii'), 'XXVIII')
+        self.assertEqual(canon('xxviiii'), 'XXIX')
 
-        self.assertEqual(canon('liiii'), 'liv')
+        self.assertEqual(canon('liiii'), 'LIV')
 
-        self.assertEqual(canon('xxxxviiii'), 'il')
+        self.assertEqual(canon('xxxxviiii'), 'IL')
 
     def test_canon_cent(self):
-        self.assertEqual(canon('c'), 'c')
-        self.assertEqual(canon('ciiii'), 'civ')
+        self.assertEqual(canon('c'), 'C')
+        self.assertEqual(canon('ciiii'), 'CIV')
 
     def test_canon_rules(self):
-        self.assertEqual(canon('xxxx'), 'xl')
 
         # "I" can be subtracted from "V" and "X" only.
-        self.assertEqual(canon('xxxxv'), 'xlv')
-
+        self.assertEqual(canon('xxxviiii'), 'XXXIX')
+        
         # "X" can be subtracted from "L" and "C" only.
+        self.assertEqual(canon('xxxx'), 'XL')
+        self.assertEqual(canon('xxxxv'), 'XLV')
+        
+        
+        self.assertEqual(canon('lxxxviiii'), 'LXXXIX') # 89
+        self.assertEqual(canon('lxxxx'), 'XC')
+        self.assertEqual(canon('lxxxxi'), 'XCI')
+
         # "C" can be subtracted from "D" and "M" only.
         # "V", "L", and "D" can never be subtracted
+
+    def test_case(self):
+        self.assertEqual(canon('XXXVIIII'), 'XXXIX')
 

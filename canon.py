@@ -2,13 +2,15 @@
 
 def canon(bacon):
     replacements = [
-        ('iiii', 'iv'),
-        ('viv', 'ix'),
-        ('xxxxix', 'il'),
-        ('xxxx', 'xl'),
+        ('IIII', 'IV'),
+        ('VIV', 'IX'),
+        ('XXXXIX', 'IL'),
+        ('LXXXX', 'XC'),
+        ('XXXX', 'XL'),
     ]
     print
     print bacon
+    bacon = bacon.upper()
     for old, new in replacements:
         bacon = bacon.replace(old, new)
         print bacon
