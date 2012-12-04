@@ -109,4 +109,6 @@ if __name__ == '__main__':
         print "%s -> %s" % (t, tokenize(t))
         print [replace_token(c) for c in tokenize(t)]
         print [replace_token2(c) for c in tokenize(t)]
+        result = [replace_token2(c) for c in tokenize(t)]
+        print canon(''.join(result))
 
