@@ -45,6 +45,9 @@ class TestAdd(unittest.TestCase):
             'X'
         )
 
+    def test_all(self):
+        for i in range(50):
+            print i,add('I'*i,'')
 
     def test_too_many_symbols(self):
         self.assertEqual(
@@ -55,8 +58,6 @@ class TestAdd(unittest.TestCase):
             add('VVV', 'I'),
             'XVI'
         )
-
-
     def test_ordering(self):
         self.assertEqual(
             add('I', 'V'),
@@ -74,7 +75,6 @@ class TestAdd(unittest.TestCase):
             add('V', 'VIII'),
             'XIII'
         )
-        print 'our test' * 10
         self.assertEqual(
             add('V', 'XVVV'),
             'XXX'

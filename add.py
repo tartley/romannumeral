@@ -1,15 +1,17 @@
 def add(augend, addend):
     simple_sum = augend + addend
-    print 'simple', simple_sum
     return convert_ls(convert_xs(convert_vs(simple_sum)))
 
 
 def order(number):
     return ''.join(reversed(sorted(number, key=get_ordering_of)))
 
-def ordered(fn):
-    def ordered_fn(*args):
-        return order(fn(*args))
+def ordered(original_function):
+
+    def ordered_fn(number):
+        original_result = original_function(number)
+        return order(original_result)
+
     return ordered_fn
 
 def get_ordering_of(numeral):
