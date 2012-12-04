@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+import sys
 
 test_strings = [
     'I', 
@@ -109,25 +112,35 @@ def tokenise_str(input_str):
     
 
 if __name__ == '__main__':
-    for t in test_strings:
-        print "Running conversion process for %s" % t
-        print "After tokenisation: %s" % tokenise(t)
-        simple_swap = [replace_token(c) for c in tokenise(t)]
-        print "After basic expansion: %s" % simple_swap
-        clever_swap = [replace_token2(c) for c in tokenise(t)]
-        print "After smart expansion: %s" % clever_swap
-        result = canon(''.join(clever_swap))
-        print "After canonicalisation: %s" % result 
-        print
-        print
-
-    input_a = "IX"
-    input_b = "II"
-
-    print (tokenise_str(input_a), tokenise_str(input_b))
-    result = add(tokenise_str(input_a), tokenise_str(input_b))
-    print result
-    print canon(result)
     
+    if len(sys.argv) == 1:
+
+        # Run the expansion demo
+        for t in test_strings:
+            print "Running conversion process for %s" % t
+            print "After tokenisation: %s" % tokenise(t)
+            simple_swap = [replace_token(c) for c in tokenise(t)]
+            print "After basic expansion: %s" % simple_swap
+            clever_swap = [replace_token2(c) for c in tokenise(t)]
+            print "After smart expansion: %s" % clever_swap
+            result = canon(''.join(clever_swap))
+            print "After canonicalisation: %s" % result 
+            print
+            print
+
+    elif len(sys.argv) == 3:
+        # Add two strings
+        input_a = sys.argv[1]
+        input_b = sys.argv[2]
+
+        print "First input %s simplifies to %s" % (input_a, tokenise_str(input_a))
+        print "Second input %s simplifies to %s" % (input_b, tokenise_str(input_b))
+        result = add(tokenise_str(input_a), tokenise_str(input_b))
+        print "Result after addition: %s" % result
+        print "Canonical result: %s" % canon(result)
+   
+    else:
+        print "Something amusing an error message"
+        
 
 

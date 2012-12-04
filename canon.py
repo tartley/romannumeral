@@ -8,11 +8,8 @@ def canon(bacon):
         ('LXXXX', 'XC'),
         ('XXXX', 'XL'),
     ]
-    print
-    print bacon
     bacon = bacon.upper()
     for old, new in replacements:
         bacon = bacon.replace(old, new)
-        print bacon
     return bacon
 
