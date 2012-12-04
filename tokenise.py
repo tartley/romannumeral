@@ -128,6 +128,19 @@ if __name__ == '__main__':
             print
             print
 
+    elif len(sys.argv) == 2:
+        t = sys.argv[1]
+        print "Running conversion process for %s" % t
+        print "After tokenisation: %s" % tokenise(t)
+        simple_swap = [replace_token(c) for c in tokenise(t)]
+        print "After basic expansion: %s" % simple_swap
+        clever_swap = [replace_token2(c) for c in tokenise(t)]
+        print "After smart expansion: %s" % clever_swap
+        result = canon(''.join(clever_swap))
+        print "After canonicalisation: %s" % result 
+        print
+        print
+
     elif len(sys.argv) == 3:
         # Add two strings
         input_a = sys.argv[1]
