@@ -75,9 +75,7 @@ def replace_token(token):
         # Divide the value of the second character by the 
         # first, then use this to generate a number of 
         # output characters
-        print "Converting", token
         count = conversions[token[1]] / conversions[token[0]]
-        print count
         return token[0] + (token[0] * count)
     return token
 
@@ -87,7 +85,6 @@ def replace_token2(token):
         value = conversions[token[1]] - conversions[token[0]]
         # We cannot go smaller than token[0] or we'll create more
         # ascending sequences, I think...
-        print "Token", token, value
         
         # Lets generate out the values
         output = []
@@ -103,12 +100,18 @@ def replace_token2(token):
         
     
 
+from canon import canon
 
 if __name__ == '__main__':
     for t in test_strings:
-        print "%s -> %s" % (t, tokenize(t))
-        print [replace_token(c) for c in tokenize(t)]
-        print [replace_token2(c) for c in tokenize(t)]
-        result = [replace_token2(c) for c in tokenize(t)]
-        print canon(''.join(result))
+        print "Running conversion process for %s" % t
+        print "After tokenisation: %s" % tokenize(t)
+        simple_swap = [replace_token(c) for c in tokenize(t)]
+        print "After basic expansion: %s" % simple_swap
+        clever_swap = [replace_token2(c) for c in tokenize(t)]
+        print "After smart expansion: %s" % clever_swap
+        result = canon(''.join(clever_swap))
+        print "After canonicalisation: %s" % result 
+        print
+        print
 
